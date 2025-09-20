@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mother's Sparsh Playway School and Day Care</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		/* Global Styles */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		:root {
+			--primary: #4e54c8;
+			--secondary: #8f94fb;
+			--accent: #ff6b6b;
+			--light: #f8f9fa;
+			--dark: #343a40;
+			--success: #28a745;
+		}
+
+		body {
+			background-color: #f9f9f9;
+			color: #333;
+			line-height: 1.6;
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 15px;
+		}
+
+		/* Header Styles */
+		header {
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			color: white;
+			padding: 15px 0;
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.header-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			font-size: 24px;
+			font-weight: bold;
+			display: flex;
+			align-items: center;
+		}
+
+		.logo i {
+			margin-right: 10px;
+			font-size: 28px;
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+		}
+
+		nav ul li {
+			margin-left: 20px;
+		}
+
+		nav ul li a {
+			color: white;
+			text-decoration: none;
+			padding: 5px 10px;
+			border-radius: 4px;
+			transition: background-color 0.3s;
+		}
+
+		nav ul li a:hover,
+		nav ul li a.active {
+			background-color: rgba(255, 255, 255, 0.2);
+		}
+
+		.mobile-menu-btn {
+			display: none;
+			font-size: 24px;
+			background: none;
+			border: none;
+			color: white;
+			cursor: pointer;
+		}
+
+	/* Hero Section */
+        .hero {
+            /* Assuming image is in an 'images' folder at the same level as your HTML file */
+            background: linear-gradient(rgba(78, 84, 200, 0.7), rgba(143, 148, 251, 0.7)), url('SS03.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+	
+		.hero h1 {
+			font-size: 2.5rem;
+			margin-bottom: 20px;
+		}
+
+		.hero p {
+			font-size: 1.2rem;
+			max-width: 700px;
+			margin: 0 auto 30px;
+		}
+
+		.btn {
+			display: inline-block;
+			background-color: var(--accent);
+			color: white;
+			padding: 12px 25px;
+			border-radius: 30px;
+			text-decoration: none;
+			font-weight: bold;
+			transition: all 0.3s;
+		}
+
+		.btn:hover {
+			background-color: #ff5252;
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Section Styles */
+		section {
+			padding: 60px 0;
+		}
+
+		.section-title {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+
+		.section-title h2 {
+			font-size: 2rem;
+			color: var(--primary);
+			margin-bottom: 15px;
+		}
+
+		.section-title p {
+			color: #666;
+			max-width: 700px;
+			margin: 0 auto;
+		}
+
+		/* Features Section */
+		.features {
+			background-color: white;
+		}
+
+		.features-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 30px;
+		}
+
+		.feature-card {
+			background-color: var(--light);
+			border-radius: 8px;
+			padding: 30px;
+			text-align: center;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+			transition: transform 0.3s;
+		}
+
+		.feature-card:hover {
+			transform: translateY(-10px);
+		}
+
+		.feature-card i {
+			font-size: 40px;
+			color: var(--primary);
+			margin-bottom: 20px;
+		}
+
+		.feature-card h3 {
+			margin-bottom: 15px;
+			color: var(--dark);
+		}
+
+		/* Accordion Styles */
+		.accordion {
+			margin-top: 30px;
+		}
+
+		.accordion-item {
+			background-color: white;
+			border-radius: 8px;
+			margin-bottom: 15px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+			overflow: hidden;
+		}
+
+		.accordion-header {
+			padding: 20px;
+			background: linear-gradient(to right, var(--primary), var(--secondary));
+			color: white;
+			cursor: pointer;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.accordion-content {
+			padding: 0;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s, padding 0.3s;
+		}
+
+		.accordion-content.active {
+			padding: 20px;
+			max-height: 1000px;
+		}
+
+		.activity-content {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 20px;
+			align-items: center;
+		}
+
+		.activity-image {
+			flex: 1;
+			min-width: 300px;
+		}
+
+		.activity-image img {
+			width: 100%;
+			border-radius: 8px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		.activity-text {
+			flex: 2;
+			min-width: 300px;
+		}
+
+		/* Testimonials */
+		.testimonials {
+			background-color: var(--light);
+		}
+
+		.testimonial-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 30px;
+		}
+
+		.testimonial-card {
+			background-color: white;
+			border-radius: 8px;
+			padding: 30px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+		}
+
+		.testimonial-card p {
+			font-style: italic;
+			margin-bottom: 20px;
+		}
+
+		.testimonial-author {
+			display: flex;
+			align-items: center;
+		}
+
+		.testimonial-author img {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			object-fit: cover;
+			margin-right: 15px;
+		}
+
+		/* Gallery */
+		.gallery-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 15px;
+		}
+
+		.gallery-item {
+			height: 200px;
+			border-radius: 8px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.gallery-item img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s;
+		}
+
+		.gallery-item:hover img {
+			transform: scale(1.1);
+		}
+
+		/* Contact Form */
+		.contact-form {
+			background-color: white;
+			border-radius: 8px;
+			padding: 30px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-group label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+
+		.form-group input,
+		.form-group textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		.form-group textarea {
+			min-height: 150px;
+		}
+
+		/* Contact Info */
+		.contact-info-card {
+			background-color: white;
+			border-radius: 8px;
+			padding: 30px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+			margin-bottom: 30px;
+			text-align: center;
+		}
+
+		.contact-info-card i {
+			font-size: 40px;
+			color: var(--primary);
+			margin-bottom: 20px;
+		}
+
+		/* Footer */
+		footer {
+			background-color: var(--dark);
+			color: white;
+			padding: 40px 0 20px;
+		}
+
+		.footer-content {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 30px;
+			margin-bottom: 30px;
+		}
+
+		.footer-section h3 {
+			margin-bottom: 20px;
+			font-size: 1.2rem;
+		}
+
+		.footer-section p,
+		.footer-section li {
+			margin-bottom: 10px;
+		}
+
+		.footer-section ul {
+			list-style: none;
+		}
+
+		.footer-section a {
+			color: #ddd;
+			text-decoration: none;
+			transition: color 0.3s;
+		}
+
+		.footer-section a:hover {
+			color: white;
+		}
+
+		.social-links {
+			display: flex;
+			gap: 15px;
+		}
+
+		.social-links a {
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			background-color: rgba(255, 255, 255, 0.1);
+			border-radius: 50%;
+			text-align: center;
+			line-height: 40px;
+			transition: background-color 0.3s;
+		}
+
+		.social-links a:hover {
+			background-color: var(--primary);
+		}
+
+		.footer-bottom {
+			text-align: center;
+			padding-top: 20px;
+			border-top: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		/* Page Content */
+		.page-content {
+			display: none;
+		}
+
+		.page-content.active {
+			display: block;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			nav ul {
+				display: none;
+				position: absolute;
+				top: 70px;
+				left: 0;
+				right: 0;
+				background-color: var(--primary);
+				flex-direction: column;
+				padding: 20px;
+			}
+
+			nav ul.show {
+				display: flex;
+			}
+
+			nav ul li {
+				margin: 10px 0;
+			}
+
+			.mobile-menu-btn {
+				display: block;
+			}
+
+			.hero h1 {
+				font-size: 2rem;
+			}
+
+			.hero p {
+				font-size: 1rem;
+			}
+
+			.activity-content {
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Header -->
+	<header>
+		<div class="container">
+			<div class="header-content">
+				<div class="logo">
+					<i class="fas fa-child"></i>
+					Mother's Sparsh
+				</div>
+				<nav>
+					<ul id="nav-menu">
+						<li><a href="#home" class="nav-link active">Home</a></li>
+						<li><a href="#activities" class="nav-link">Activities</a></li>
+						<li><a href="#history" class="nav-link">History</a></li>
+						<li><a href="#principal" class="nav-link">Principal</a></li>
+						<li><a href="#vision" class="nav-link">Vision</a></li>
+						<li><a href="#reviews" class="nav-link">Reviews</a></li>
+						<li><a href="#contact" class="nav-link">Contact Us</a></li>
+					</ul>
+					<button class="mobile-menu-btn" id="mobile-menu-toggle">
+						<i class="fas fa-bars"></i>
+					</button>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<!-- Home Page -->
+	<div id="home" class="page-content active">
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="container">
+				<h1>Welcome to Mother's Sparsh Playway School and Day Care</h1>
+				<p>Where learning begins with fun, creativity, and care. We provide a nurturing environment for your
+					child's early development.</p>
+				<a href="#" class="btn" id="enrollBtn">Enroll Now</a>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section class="features">
+			<div class="container">
+				<div class="section-title">
+					<h2>Why Choose Us?</h2>
+					<p>Choosing the first school for your child is one of the most important decisions you will make. At Mother's Sparsh Playway School and Day Care, we don't just care for children; we build the foundation for confident, curious, and compassionate future leaders. We are committed to providing an unparalleled early education experience where your child's potential is recognized, nurtured, and celebrated.</p>
+				</div>
+				<div class="features-grid">
+					<div class="feature-card">
+						<i class="fas fa-shield-alt"></i>
+						<h3>Safe Environment</h3>
+						<p>Our premises are designed with child safety as the top priority, with secure facilities and
+							trained staff.</p>
+					</div>
+					<div class="feature-card">
+						<i class="fas fa-paint-brush"></i>
+						<h3>Creative Learning</h3>
+						<p>We focus on learning through play, arts, and creative activities that stimulate young minds.
+						</p>
+					</div>
+					<div class="feature-card">
+						<i class="fas fa-users"></i>
+						<h3>Experienced Staff</h3>
+						<p>Our teachers are trained in early childhood development and are passionate about education.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Activities Preview -->
+		<section class="activities-preview">
+			<div class="container">
+				<div class="section-title">
+					<h2>Our Activities</h2>
+					<p>Engaging activities that promote holistic development</p>
+				</div>
+				<div class="accordion-item">
+					<div class="accordion-header">
+						<span>Tiny Graduates, Big Dreams</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<div class="accordion-content">
+						<div class="activity-content">
+							<div class="activity-image">
+								<img src="SS02.jpg">
+							</div>
+							<div class="activity-text">
+								<p>We believe every step in a child's journey is a milestone worth celebrating. Our <b>Annual Convocation Ceremony</b> is a cherished event that honors the wonderful growth, curiosity, and accomplishments of our little learners.
+
+This special day is more than just a ceremony; it's a heartfelt tribute to the vibrant energy and incredible progress each child has made. We watch with pride as our tiny graduates don their caps and gowns, ready to take their next bold step into a world of greater learning.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion">
+					<div class="accordion-item">
+						<div class="accordion-header">
+							<span>Celebrating Creativity & Confidence</span>
+							<i class="fas fa-chevron-down"></i>
+						</div>
+						<div class="accordion-content">
+							<div class="activity-content">
+								<div class="activity-image">
+									<img src="SS01.jpg">
+								</div>
+								<div class="activity-text">
+									<p>We believe in nurturing the spark of creativity and confidence in every child. Our <b>Annual Day</b> is the grandest event of the year, a vibrant spectacle where our little stars step into the spotlight to shine!
+
+This much-anticipated celebration is more than just a performance; it's a showcase of imagination, teamwork, and the incredible talents hidden within each child. From joyful songs and graceful dances to charming plays, the stage comes alive with the infectious energy of our young performers. It is a proud moment for us to display the holistic development and boundless potential of our students.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="accordion-item">
+					<div class="accordion-header">
+						<span>Beyond the Classroom: Festivals, Fun & Memories</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<div class="accordion-content">
+						<div class="activity-content">
+							<div class="activity-image">
+								<img src="SS06.jpg">
+							</div>
+							<div class="activity-text">
+								<p>we believe that the most powerful lessons are learned through joy and experience. Our vibrant calendar is thoughtfully woven with a tapestry of celebrations, from national holidays and seasonal festivals to cultural and religious events.
+
+These celebrations are far more than just fun activities; they are immersive, hands-on learning opportunities. Through the vibrant colors of Holi, the gratitude of Guru Purab, the patriotic spirit of Independence Day, the warmth of Lohri, and the creative exploration of our Summer Camp, children develop a deep appreciation for diversity, culture, and community.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="accordion-item">
+					<div class="accordion-header">
+						<span>Culture & Values in Action</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					
+					
+					<div class="accordion-content">
+						<div class="activity-content">
+							<div class="activity-image">
+								<img src="SS04.jpg">
+							</div>
+							<div class="activity-text">
+								<p>We believe in teaching timeless values through timeless tales. Our annual staging of the Ramayan is not merely a play; it is a vibrant, immersive learning experience where our tiny tots transform into Lord Ram, the virtuous Sita, the mighty Hanuman, and the wise Lakshman.
+
+Through this creative retelling, children don't just memorize lines—they imbibe the core principles of duty, righteousness, courage, devotion, and the ultimate victory of good over evil.</p>
+							</div>
+							
+							<div class="activity-image">
+								<img src="SS05.jpg">
+							</div>
+							<div class="activity-text">
+								<p>Our Basant Panchami celebration is a beautiful symphony of learning and tradition. The school is adorned in the vibrant hues of yellow, symbolizing energy, optimism, and the blossoming of new life. Children participate in special assemblies, offer prayers to seek the blessings of Maa Saraswati for wisdom and creativity, and engage in a variety of cultural activities.</p>
+							</div>
+				</div>
+				
+			</div>
+		</section>
+	</div>
+
+	<!-- Activities Page -->
+	<div id="activities" class="page-content">
+		<section class="activities">
+		<div class="container">
+				<div class="section-title">
+					<h2>Our Activities</h2>
+					<p>Engaging activities that promote holistic development</p>
+				</div>
+				<div class="accordion-item">
+					<div class="accordion-header">
+						<span>Tiny Graduates, Big Dreams</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<div class="accordion-content">
+						<div class="activity-content">
+							<div class="activity-image">
+								<img src="SS02.jpg">
+							</div>
+							<div class="activity-text">
+								<p>We believe every step in a child's journey is a milestone worth celebrating. Our <b>Annual Convocation Ceremony</b> is a cherished event that honors the wonderful growth, curiosity, and accomplishments of our little learners.
+
+This special day is more than just a ceremony; it's a heartfelt tribute to the vibrant energy and incredible progress each child has made. We watch with pride as our tiny graduates don their caps and gowns, ready to take their next bold step into a world of greater learning.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordion">
+					<div class="accordion-item">
+						<div class="accordion-header">
+							<span>Celebrating Creativity & Confidence</span>
+							<i class="fas fa-chevron-down"></i>
+						</div>
+						<div class="accordion-content">
+							<div class="activity-content">
+								<div class="activity-image">
+									<img src="SS01.jpg">
+								</div>
+								<div class="activity-text">
+									<p>We believe in nurturing the spark of creativity and confidence in every child. Our <b>Annual Day</b> is the grandest event of the year, a vibrant spectacle where our little stars step into the spotlight to shine!
+
+This much-anticipated celebration is more than just a performance; it's a showcase of imagination, teamwork, and the incredible talents hidden within each child. From joyful songs and graceful dances to charming plays, the stage comes alive with the infectious energy of our young performers. It is a proud moment for us to display the holistic development and boundless potential of our students.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				<div class="accordion-item">
+					<div class="accordion-header">
+						<span>Beyond the Classroom: Festivals, Fun & Memories</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<div class="accordion-content">
+						<div class="activity-content">
+							<div class="activity-image">
+								<img src="SS06.jpg">
+							</div>
+							<div class="activity-text">
+								<p>we believe that the most powerful lessons are learned through joy and experience. Our vibrant calendar is thoughtfully woven with a tapestry of celebrations, from national holidays and seasonal festivals to cultural and religious events.
+
+These celebrations are far more than just fun activities; they are immersive, hands-on learning opportunities. Through the vibrant colors of Holi, the gratitude of Guru Purab, the patriotic spirit of Independence Day, the warmth of Lohri, and the creative exploration of our Summer Camp, children develop a deep appreciation for diversity, culture, and community.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="accordion-item">
+					<div class="accordion-header">
+						<span>Culture & Values in Action</span>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					
+					
+					<div class="accordion-content">
+						<div class="activity-content">
+							<div class="activity-image">
+								<img src="SS04.jpg">
+							</div>
+							<div class="activity-text">
+								<p>We believe in teaching timeless values through timeless tales. Our annual staging of the Ramayan is not merely a play; it is a vibrant, immersive learning experience where our tiny tots transform into Lord Ram, the virtuous Sita, the mighty Hanuman, and the wise Lakshman.
+
+Through this creative retelling, children don't just memorize lines—they imbibe the core principles of duty, righteousness, courage, devotion, and the ultimate victory of good over evil.</p>
+							</div>
+							
+							<div class="activity-image">
+								<img src="SS05.jpg">
+							</div>
+							<div class="activity-text">
+								<p>Our Basant Panchami celebration is a beautiful symphony of learning and tradition. The school is adorned in the vibrant hues of yellow, symbolizing energy, optimism, and the blossoming of new life. Children participate in special assemblies, offer prayers to seek the blessings of Maa Saraswati for wisdom and creativity, and engage in a variety of cultural activities.</p>
+							</div>
+				</div>
+				
+			</div>
+		</section>
+
+		<section class="gallery">
+			<div class="container">
+				<div class="section-title">
+					<h2>Activity Gallery</h2>
+					<p>See our little ones in action</p>
+				</div>
+				<div class="gallery-grid">
+					<div class="gallery-item">
+						<img src="SS07.jpg"
+							alt="Arts and Crafts">
+					</div>
+					<div class="gallery-item">
+						<img src="SS08.jpg"
+							alt="Music Time">
+					</div>
+					<div class="gallery-item">
+						<img src="SS09.jpg"
+							alt="Outdoor Play">
+					</div>
+					<div class="gallery-item">
+						<img src="SS10.jpg"
+							alt="Story Time">
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- History Page -->
+	<div id="history" class="page-content">
+		<section class="history">
+			<div class="container">
+				<div class="section-title">
+					<h2>A Vision for the Future: The Mother's Sparsh Story</h2>
+					<p>How Mother's Sparsh Playway School and Day Care came to be</p>
+				</div>
+				<div class="feature-card">
+					<h3>Founded in 2023</h3>
+					<p>Mother's Sparsh was established in 2023, not merely as another educational institution, but as the realization of a clear and compassionate vision for early childhood education. Our foundation is built upon the belief that every child deserves a nurturing environment that recognizes their individuality and innate potential.</p>
+					<p>The driving force behind our inception is our Principal, Mrs. Bhawna Mittal, a visionary leader with a unique blend of academic excellence and profound empathy. Her qualifications in Commerce and Business Administration provide a strategic framework for our operations, while her deep affection for children and exceptional skill in managing them form the very heart of our philosophy.The driving force behind our inception is our Principal, Mrs. Bhawna Mittal, a visionary leader with a unique blend of academic excellence and profound empathy. Her qualifications in Commerce and Business Administration provide a strategic framework for our operations, while her deep affection for children and exceptional skill in managing them form the very heart of our philosophy.</p>
+					<p>From the beginning, Mother's Sparsh was designed to be different. Under Mrs. Mittal's guidance, we developed a unique curriculum that breaks from conventional models, expertly balancing structured learning with the essential freedom of play. This approach ensures that a child’s first formal experience with education is filled with joy, curiosity, and a genuine love for discovery.</p>
+					<p>Our history, though beginning in 2023, is already defined by a future-focused, growth-oriented mindset. We are dedicated to more than just administration; we are committed to shaping futures. Through regular workshops for parents and teachers, we extend our ecosystem of learning beyond the classroom, fostering a community united by the principles of positive parenting and holistic child development.
+
+As Mrs. Mittal says, </p>
+<i>“Every child is unique and has their own pace of development. Our role is to provide the right environment and guidance to help them reach their full potential.”</i>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Principal Page -->
+	<div id="principal" class="page-content">
+		<section class="principal">
+			<div class="container">
+				<div class="section-title">
+					<h2>About Our Principal</h2>
+					<p>Meet the guiding force behind our institution</p>
+				</div>
+				<div style="display: flex; gap: 30px; flex-wrap: wrap;">
+					<div style="flex: 1; min-width: 300px;">
+						<img src="BHAWNA01.jpg">
+					</div>
+					<div style="flex: 2; min-width: 300px;">
+						<h3>Mrs. Bhawna Mittal</h3>
+						<p><b><i>Mrs. Bhawna Mittal</i></b> is a highly qualified and accomplished educational leader. With a strong
+							academic background in both commerce (B.Com) and business administration (MBA), she brings a
+							strategic and managerial approach to her role as Principal.</p>
+						<p>She is a dynamic and skilled leader, evidenced by her success as a debate winner in multiple
+							youth festivals. Her core strengths lie in her deep affection for children 
+							and her exceptional ability to manage and engage with them, mastering even the most
+							challenging classroom situations.</p>
+						<p>Under her leadership, Mother's Sparsh has developed a unique curriculum that balances
+							structured learning with free play, ensuring that children develop a love for learning that
+							lasts a lifetime. She regularly conducts workshops for parents and teachers, sharing her
+							expertise on child development and positive parenting techniques.</p>
+						<p>"Every child is unique and has their own pace of development. Our role is to provide the
+							right environment and guidance to help them reach their full potential," says Mrs. Mittal.
+						</p>
+						<p>Mrs. Mittal is characterized by a <b>future-focused, growth-oriented mindset</b> that positions her not just as an administrator, but as a visionary
+							dedicated to shaping the future of her students and institution. She is a great manager who
+							effectively combines practical skills with a clear, forward-thinking vision for education.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Vision Page -->
+	<div id="vision" class="page-content">
+		<section class="vision">
+			<div class="container">
+				<div class="section-title">
+					<h2>Our Vision & Mission</h2>
+					<p>What drives us every day</p>
+				</div>
+				<div class="features-grid">
+					<div class="feature-card">
+						<i class="fas fa-eye"></i>
+						<h3>Our Vision</h3>
+						<p>To be a leading play school that nurtures young minds to become confident, creative, and
+							compassionate individuals who love learning and are prepared for the future.</p>
+					</div>
+					<div class="feature-card">
+						<i class="fas fa-bullseye"></i>
+						<h3>Our Mission</h3>
+						<p>To provide a safe, stimulating, and inclusive environment where children can explore,
+							discover, and learn through play-based experiences that promote holistic development.</p>
+					</div>
+					<div class="feature-card">
+						<i class="fas fa-heart"></i>
+						<h3>Our Values</h3>
+						<p>We value creativity, respect, integrity, and joy in learning. We believe in fostering each
+							child's unique abilities while promoting social responsibility and emotional intelligence.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Reviews Page -->
+	<div id="reviews" class="page-content">
+		<section class="testimonials">
+			<div class="container">
+				<div class="section-title">
+					<h2>Parents' Reviews</h2>
+					<p>What parents say about our play school</p>
+				</div>
+				<div class="testimonial-grid">
+					<div class="testimonial-card">
+						<p>"Mother's Sparsh has been a blessing for our child. The teachers are caring and attentive,
+							and the activities are both fun and educational. We've seen remarkable development in our
+							daughter's social skills and confidence."</p>
+						<div class="testimonial-author">
+							<img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+								alt="Parent">
+							<div>
+								<h4>Rita Sharma</h4>
+								<p>Parent of Aarna (4 years)</p>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial-card">
+						<p>"We chose Mother's Sparsh for its warm environment and creative curriculum. Our son looks
+							forward to going to school every day. The emphasis on learning through play is exactly what
+							we were looking for."</p>
+						<div class="testimonial-author">
+							<img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+								alt="Parent">
+							<div>
+								<h4>Rajesh Mehta</h4>
+								<p>Parent of Vihaan (3 years)</p>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial-card">
+						<p>"The teachers at Mother's Sparsh are exceptional. They understand each child's unique needs
+							and nurture their strengths. The regular parent-teacher interactions keep us informed about
+							our child's progress."</p>
+						<div class="testimonial-author">
+							<img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db1604?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+								alt="Parent">
+							<div>
+								<h4>Priya Patel</h4>
+								<p>Parent of Arjun (5 years)</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Contact Page -->
+	<div id="contact" class="page-content">
+		<section class="contact">
+			<div class="container">
+				<div class="section-title">
+					<h2>Contact Us</h2>
+					<p>Get in touch with us for any queries</p>
+				</div>
+
+				<div class="features-grid">
+					<div class="contact-info-card">
+						<i class="fas fa-map-marker-alt"></i>
+						<h3>Address</h3>
+						<p>Mother's Sparsh Playway School and Day Care<br>
+							Prithvi Nagar, Santokh Pura<br>
+							Jalandhar, Punjab 144008</p>
+					</div>
+					<div class="contact-info-card">
+						<i class="fas fa-phone"></i>
+						<h3>Phone Numbers</h3>
+						<p>+91-9803652046<br>+91-9417987591</p>
+					</div>
+					<div class="contact-info-card">
+						<i class="fas fa-envelope"></i>
+						<h3>Email</h3>
+						<p>bhawnaagnihotri89@gmail.com</p>
+					</div>
+				</div>
+
+
+			</div>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-section">
+					<h3>About Us</h3>
+					<p>Mother's Sparsh Playway School and Day Care provides a nurturing environment where children can
+						learn, grow, and explore through play-based activities and creative learning experiences.</p>
+				</div>
+				<div class="footer-section">
+					<h3>Quick Links</h3>
+					<ul>
+						<li><a href="#" class="footer-nav-link" data-target="home">Home</a></li>
+						<li><a href="#" class="footer-nav-link" data-target="activities">Activities</a></li>
+						<li><a href="#" class="footer-nav-link" data-target="history">History</a></li>
+						<li><a href="#" class="footer-nav-link" data-target="principal">About Principal</a></li>
+						<li><a href="#" class="footer-nav-link" data-target="vision">Vision</a></li>
+						<li><a href="#" class="footer-nav-link" data-target="reviews">Parents Reviews</a></li>
+						<li><a href="#" class="footer-nav-link" data-target="contact">Contact Us</a></li>
+					</ul>
+				</div>
+				<div class="footer-section">
+					<h3>Contact Information</h3>
+					<p><i class="fas fa-map-marker-alt"></i> Prithvi Nagar, Santokh Pura, Jalandhar, Punjab 144008</p>
+					<p><i class="fas fa-phone"></i> +91-9803652046, +91-9417987591</p>
+					<p><i class="fas fa-envelope"></i> bhawnaagnihotri89@gmail.com</p>
+					<div class="social-links">
+						<a href="#"><i class="fab fa-facebook-f"></i></a>
+						<a href="#"><i class="fab fa-twitter"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-youtube"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>&copy; 2025 Mother's Sparsh Playway School and Day Care. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		// Navigation functionality
+		document.addEventListener('DOMContentLoaded', function () {
+			const navLinks = document.querySelectorAll('.nav-link');
+			const footerLinks = document.querySelectorAll('.footer-nav-link');
+			const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+			const navMenu = document.getElementById('nav-menu');
+			const accordionHeaders = document.querySelectorAll('.accordion-header');
+			const enrollBtn = document.getElementById('enrollBtn');
+
+			// Navigation click handler
+			function handleNavigationClick(e) {
+				e.preventDefault();
+
+				// Remove active class from all nav links
+				navLinks.forEach(l => l.classList.remove('active'));
+
+				// Add active class to clicked link if it's a nav link
+				if (this.classList.contains('nav-link')) {
+					this.classList.add('active');
+				} else {
+					// Find and activate the corresponding nav link for footer links
+					const target = this.getAttribute('data-target');
+					document.querySelector(`.nav-link[href="#${target}"]`).classList.add('active');
+				}
+
+				// Hide all pages
+				document.querySelectorAll('.page-content').forEach(page => {
+					page.classList.remove('active');
+				});
+
+				// Show the targeted page
+				let targetPage;
+				if (this.classList.contains('nav-link')) {
+					targetPage = this.getAttribute('href').substring(1);
+				} else {
+					targetPage = this.getAttribute('data-target');
+				}
+				document.getElementById(targetPage).classList.add('active');
+
+				// Close mobile menu if open
+				navMenu.classList.remove('show');
+
+				// Scroll to top
+				window.scrollTo(0, 0);
+			}
+
+			// Add event listeners to navigation links
+			navLinks.forEach(link => {
+				link.addEventListener('click', handleNavigationClick);
+			});
+
+			// Add event listeners to footer links
+			footerLinks.forEach(link => {
+				link.addEventListener('click', handleNavigationClick);
+			});
+
+			// Mobile menu toggle
+			mobileMenuToggle.addEventListener('click', function () {
+				navMenu.classList.toggle('show');
+			});
+
+			// Accordion functionality
+			accordionHeaders.forEach(header => {
+				header.addEventListener('click', function () {
+					const content = this.nextElementSibling;
+					const isActive = content.classList.contains('active');
+
+					// Close all accordion items
+					document.querySelectorAll('.accordion-content').forEach(item => {
+						item.classList.remove('active');
+					});
+
+					document.querySelectorAll('.accordion-header i').forEach(icon => {
+						icon.classList.remove('fa-chevron-up');
+						icon.classList.add('fa-chevron-down');
+					});
+
+					// Open clicked item if it was closed
+					if (!isActive) {
+						content.classList.add('active');
+						this.querySelector('i').classList.remove('fa-chevron-down');
+						this.querySelector('i').classList.add('fa-chevron-up');
+					}
+				});
+			});
+
+			// Enroll button functionality
+			enrollBtn.addEventListener('click', function(e) {
+				e.preventDefault();
+				// You can customize what happens when the enroll button is clicked
+				// For example, show a modal, redirect to a form, etc.
+				alert('Thank you for your interest in Mother\'s Sparsh! Please contact us at +91-9803652046 for enrollment information.');
+			});
+		});
+	</script>
+</body>
+
+</html>
