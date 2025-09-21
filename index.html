@@ -7,13 +7,14 @@
 	<title>Mother's Sparsh Playway School and Day Care</title>
 	<link rel="icon" type="image/png" href="favicon.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<style>
 		/* Global Styles */
 		* {
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 
 		:root {
@@ -29,6 +30,7 @@
 			background-color: #f9f9f9;
 			color: #333;
 			line-height: 1.6;
+			overflow-x: hidden;
 		}
 
 		.container {
@@ -40,13 +42,19 @@
 
 		/* Header Styles */
 		header {
-			background: radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+			background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 			color: #EEAECA;
 			padding: 15px 0;
 			position: sticky;
 			top: 0;
 			z-index: 1000;
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			transition: all 0.4s ease;
+		}
+
+		.header-scrolled {
+			padding: 10px 0;
+			background: rgba(238, 174, 202, 0.95);
 		}
 
 		.header-content {
@@ -63,9 +71,14 @@
 		}
 
 		.logo-img {
-			height: 100px; /* Adjust as needed */
+			height: 100px;
 			width: auto;
 			object-fit: contain;
+			transition: transform 0.3s ease;
+		}
+
+		.logo-img:hover {
+			transform: scale(1.05);
 		}
 
 		.logo {
@@ -87,6 +100,7 @@
 
 		nav ul li {
 			margin-left: 20px;
+			position: relative;
 		}
 
 		nav ul li a {
@@ -95,7 +109,24 @@
 			font-size: 18px;
 			padding: 4px 8px;
 			border-radius: 4px;
-			transition: background-color 0.3s;
+			transition: all 0.3s;
+			position: relative;
+		}
+
+		nav ul li a::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 2px;
+			bottom: 0;
+			left: 0;
+			background-color: white;
+			transition: width 0.3s ease;
+		}
+
+		nav ul li a:hover::after,
+		nav ul li a.active::after {
+			width: 100%;
 		}
 
 		nav ul li a:hover,
@@ -110,31 +141,58 @@
 			border: none;
 			color: white;
 			cursor: pointer;
+			transition: transform 0.3s ease;
 		}
 
-	/* Hero Section */
-        .hero {
-            /* Assuming image is in an 'images' folder at the same level as your HTML file */
-            background: linear-gradient(rgba(78, 84, 200, 0.7), rgba(143, 148, 251, 0.7)), url('SS03.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            padding: 80px 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-	
+		.mobile-menu-btn:hover {
+			transform: rotate(90deg);
+		}
+
+		/* Hero Section */
+		.hero {
+			background: linear-gradient(rgba(78, 84, 200, 0.7), rgba(143, 148, 251, 0.7)), url('SS03.jpg') center/cover no-repeat;
+			color: white;
+			text-align: center;
+			padding: 80px 0;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.hero::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.3);
+			z-index: 0;
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 1;
+			opacity: 0;
+			transform: translateY(30px);
+			animation: fadeInUp 1s ease forwards 0.5s;
+		}
+
 		.hero h1 {
 			font-size: 2.5rem;
 			margin-bottom: 20px;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 		}
 
 		.hero p {
 			font-size: 1.2rem;
 			max-width: 700px;
 			margin: 0 auto 30px;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 		}
 
 		.btn {
@@ -146,17 +204,104 @@
 			text-decoration: none;
 			font-weight: bold;
 			transition: all 0.3s;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		}
+
+		.btn::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+			transition: all 0.6s ease;
+			z-index: -1;
+		}
+
+		.btn:hover::before {
+			left: 100%;
 		}
 
 		.btn:hover {
 			background-color: #ff5252;
 			transform: translateY(-3px);
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.btn:active {
+			transform: translateY(-1px);
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		/* Floating elements */
+		.floating-elements {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+			z-index: 0;
+		}
+
+		.floating-element {
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 50%;
+			animation: float 15s infinite linear;
+		}
+
+		.floating-element:nth-child(1) {
+			top: 20%;
+			left: 10%;
+			width: 40px;
+			height: 40px;
+			animation-duration: 20s;
+		}
+
+		.floating-element:nth-child(2) {
+			top: 60%;
+			left: 80%;
+			width: 20px;
+			height: 20px;
+			animation-duration: 15s;
+			animation-delay: 1s;
+		}
+
+		.floating-element:nth-child(3) {
+			top: 40%;
+			left: 70%;
+			width: 35px;
+			height: 35px;
+			animation-duration: 18s;
+			animation-delay: 0.5s;
+		}
+
+		.floating-element:nth-child(4) {
+			top: 70%;
+			left: 20%;
+			width: 25px;
+			height: 25px;
+			animation-duration: 22s;
+			animation-delay: 1.5s;
 		}
 
 		/* Section Styles */
 		section {
 			padding: 60px 0;
+			opacity: 0;
+			transform: translateY(30px);
+			transition: opacity 0.8s ease, transform 0.8s ease;
+		}
+
+		section.visible {
+			opacity: 1;
+			transform: translateY(0);
 		}
 
 		.section-title {
@@ -168,6 +313,19 @@
 			font-size: 2rem;
 			color: var(--primary);
 			margin-bottom: 15px;
+			position: relative;
+			display: inline-block;
+		}
+
+		.section-title h2::after {
+			content: '';
+			position: absolute;
+			width: 60px;
+			height: 3px;
+			background: var(--accent);
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
 		}
 
 		.section-title p {
@@ -193,17 +351,30 @@
 			padding: 30px;
 			text-align: center;
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-			transition: transform 0.3s;
+			transition: all 0.4s ease;
+			opacity: 0;
+			transform: translateY(20px);
+		}
+
+		.feature-card.visible {
+			opacity: 1;
+			transform: translateY(0);
 		}
 
 		.feature-card:hover {
-			transform: translateY(-10px);
+			transform: translateY(-10px) scale(1.02);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 		}
 
 		.feature-card i {
 			font-size: 40px;
 			color: var(--primary);
 			margin-bottom: 20px;
+			transition: transform 0.3s ease;
+		}
+
+		.feature-card:hover i {
+			transform: scale(1.2);
 		}
 
 		.feature-card h3 {
@@ -222,6 +393,11 @@
 			margin-bottom: 15px;
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 			overflow: hidden;
+			transition: all 0.3s ease;
+		}
+
+		.accordion-item:hover {
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 		}
 
 		.accordion-header {
@@ -232,13 +408,18 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			transition: all 0.3s ease;
+		}
+
+		.accordion-header:hover {
+			background: linear-gradient(to right, var(--secondary), var(--primary));
 		}
 
 		.accordion-content {
 			padding: 0;
 			max-height: 0;
 			overflow: hidden;
-			transition: max-height 0.3s, padding 0.3s;
+			transition: all 0.5s ease;
 		}
 
 		.accordion-content.active {
@@ -256,12 +437,19 @@
 		.activity-image {
 			flex: 1;
 			min-width: 300px;
+			overflow: hidden;
+			border-radius: 8px;
 		}
 
 		.activity-image img {
 			width: 100%;
 			border-radius: 8px;
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			transition: transform 0.5s ease;
+		}
+
+		.activity-image:hover img {
+			transform: scale(1.05);
 		}
 
 		.activity-text {
@@ -285,11 +473,44 @@
 			border-radius: 8px;
 			padding: 30px;
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+			transition: all 0.3s ease;
+			opacity: 0;
+			transform: translateY(20px);
+		}
+
+		.testimonial-card.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.testimonial-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 		}
 
 		.testimonial-card p {
 			font-style: italic;
 			margin-bottom: 20px;
+			position: relative;
+		}
+
+		.testimonial-card p::before,
+		.testimonial-card p::after {
+			content: '"';
+			font-size: 40px;
+			color: var(--primary);
+			opacity: 0.2;
+			position: absolute;
+		}
+
+		.testimonial-card p::before {
+			top: -20px;
+			left: -10px;
+		}
+
+		.testimonial-card p::after {
+			bottom: -40px;
+			right: -10px;
 		}
 
 		.testimonial-author {
@@ -303,6 +524,7 @@
 			border-radius: 50%;
 			object-fit: cover;
 			margin-right: 15px;
+			border: 3px solid var(--primary);
 		}
 
 		/* Gallery */
@@ -317,17 +539,106 @@
 			border-radius: 8px;
 			overflow: hidden;
 			position: relative;
+			cursor: pointer;
+			opacity: 0;
+			transform: scale(0.9);
+			transition: all 0.5s ease;
+		}
+
+		.gallery-item.visible {
+			opacity: 1;
+			transform: scale(1);
 		}
 
 		.gallery-item img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			transition: transform 0.3s;
+			transition: all 0.5s ease;
+		}
+
+		.gallery-item::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.4);
+			opacity: 0;
+			transition: all 0.3s ease;
+			z-index: 1;
+		}
+
+		.gallery-item:hover::before {
+			opacity: 1;
 		}
 
 		.gallery-item:hover img {
 			transform: scale(1.1);
+		}
+
+		.gallery-item i {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) scale(0);
+			color: white;
+			font-size: 30px;
+			z-index: 2;
+			transition: all 0.3s ease;
+		}
+
+		.gallery-item:hover i {
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		/* Modal for gallery */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 2000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.9);
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		.modal.show {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 1;
+		}
+
+		.modal-content {
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 700px;
+			animation: zoom 0.3s ease;
+		}
+
+		.close {
+			position: absolute;
+			top: 15px;
+			right: 35px;
+			color: #f1f1f1;
+			font-size: 40px;
+			font-weight: bold;
+			transition: 0.3s;
+			cursor: pointer;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: #bbb;
+			text-decoration: none;
+			cursor: pointer;
 		}
 
 		/* Contact Form */
@@ -338,10 +649,16 @@
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 			max-width: 600px;
 			margin: 0 auto;
+			transition: all 0.3s ease;
+		}
+
+		.contact-form:hover {
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 		}
 
 		.form-group {
 			margin-bottom: 20px;
+			position: relative;
 		}
 
 		.form-group label {
@@ -357,10 +674,19 @@
 			border: 1px solid #ddd;
 			border-radius: 4px;
 			font-size: 16px;
+			transition: all 0.3s ease;
+		}
+
+		.form-group input:focus,
+		.form-group textarea:focus {
+			border-color: var(--primary);
+			box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);
+			outline: none;
 		}
 
 		.form-group textarea {
 			min-height: 150px;
+			resize: vertical;
 		}
 
 		/* Contact Info */
@@ -371,12 +697,51 @@
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 			margin-bottom: 30px;
 			text-align: center;
+			transition: all 0.3s ease;
+			opacity: 0;
+			transform: translateY(20px);
+		}
+
+		.contact-info-card.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.contact-info-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 		}
 
 		.contact-info-card i {
 			font-size: 40px;
 			color: var(--primary);
 			margin-bottom: 20px;
+			transition: transform 0.3s ease;
+		}
+
+		.contact-info-card:hover i {
+			transform: scale(1.2);
+		}
+		
+		/* Email and Phone Link Styles */
+		.email-link, .phone-link {
+			color: var(--primary);
+			text-decoration: none;
+			transition: all 0.3s ease;
+			display: inline-block;
+			padding: 2px 4px;
+			border-radius: 3px;
+		}
+		
+		.email-link:hover, .phone-link:hover {
+			color: var(--accent);
+			background-color: rgba(78, 84, 200, 0.1);
+			transform: translateY(-2px);
+		}
+		
+		.email-link i, .phone-link i {
+			margin-right: 5px;
+			font-size: 0.9em;
 		}
 
 		/* Footer */
@@ -396,6 +761,18 @@
 		.footer-section h3 {
 			margin-bottom: 20px;
 			font-size: 1.2rem;
+			position: relative;
+			padding-bottom: 10px;
+		}
+
+		.footer-section h3::after {
+			content: '';
+			position: absolute;
+			width: 40px;
+			height: 2px;
+			background: var(--accent);
+			bottom: 0;
+			left: 0;
 		}
 
 		.footer-section p,
@@ -410,11 +787,27 @@
 		.footer-section a {
 			color: #ddd;
 			text-decoration: none;
-			transition: color 0.3s;
+			transition: all 0.3s ease;
+			position: relative;
+		}
+
+		.footer-section a::after {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 1px;
+			bottom: -2px;
+			left: 0;
+			background-color: var(--accent);
+			transition: width 0.3s ease;
 		}
 
 		.footer-section a:hover {
 			color: white;
+		}
+
+		.footer-section a:hover::after {
+			width: 100%;
 		}
 
 		.social-links {
@@ -430,11 +823,12 @@
 			border-radius: 50%;
 			text-align: center;
 			line-height: 40px;
-			transition: background-color 0.3s;
+			transition: all 0.3s ease;
 		}
 
 		.social-links a:hover {
 			background-color: var(--primary);
+			transform: translateY(-3px);
 		}
 
 		.footer-bottom {
@@ -443,13 +837,101 @@
 			border-top: 1px solid rgba(255, 255, 255, 0.1);
 		}
 
+		/* Back to top button */
+		.back-to-top {
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			width: 50px;
+			height: 50px;
+			background: var(--primary);
+			color: white;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(20px);
+			transition: all 0.3s ease;
+			z-index: 999;
+		}
+
+		.back-to-top.visible {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+
+		.back-to-top:hover {
+			background: var(--secondary);
+			transform: translateY(-5px);
+		}
+
 		/* Page Content */
 		.page-content {
 			display: none;
+			animation: fadeIn 0.5s ease forwards;
 		}
 
 		.page-content.active {
 			display: block;
+		}
+
+		/* Animations */
+		@keyframes fadeIn {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes float {
+			0% {
+				transform: translateY(0) rotate(0deg);
+			}
+			50% {
+				transform: translateY(-20px) rotate(10deg);
+			}
+			100% {
+				transform: translateY(0) rotate(0deg);
+			}
+		}
+
+		@keyframes zoom {
+			from { transform: scale(0.9); }
+			to { transform: scale(1); }
+		}
+
+		/* Typing animation */
+		.typing-text {
+			overflow: hidden;
+			border-right: 2px solid var(--accent);
+			white-space: nowrap;
+			margin: 0 auto;
+			letter-spacing: 1px;
+			animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+		}
+
+		@keyframes typing {
+			from { width: 0 }
+			to { width: 100% }
+		}
+
+		@keyframes blink-caret {
+			from, to { border-color: transparent }
+			50% { border-color: var(--accent); }
 		}
 
 		/* Responsive Design */
@@ -463,6 +945,13 @@
 				background-color: var(--primary);
 				flex-direction: column;
 				padding: 20px;
+				box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+				animation: slideDown 0.3s ease;
+			}
+
+			@keyframes slideDown {
+				from { opacity: 0; transform: translateY(-20px); }
+				to { opacity: 1; transform: translateY(0); }
 			}
 
 			nav ul.show {
@@ -488,17 +977,20 @@
 			.activity-content {
 				flex-direction: column;
 			}
+
+			.floating-element {
+				display: none;
+			}
 		}
 	</style>
 </head>
 
 <body>
 	<!-- Header -->
-	<header>
+	<header id="main-header">
 		<div class="container">
 			<div class="header-content">
 				<div class="logo-container">
-					<!-- Logo image placeholder -->
 					<img src="Logo.png" alt="Mother's Sparsh Logo" class="logo-img">
 					<div class="logo">
 						Mother's Sparsh<br>Playway School and Day Care
@@ -526,11 +1018,19 @@
 	<div id="home" class="page-content active">
 		<!-- Hero Section -->
 		<section class="hero">
+			<div class="floating-elements">
+				<div class="floating-element"></div>
+				<div class="floating-element"></div>
+				<div class="floating-element"></div>
+				<div class="floating-element"></div>
+			</div>
 			<div class="container">
-				<h1>Welcome to Mother's Sparsh Playway School and Day Care</h1>
-				<p>Where learning begins with fun, creativity, and care. We provide a nurturing environment for your
-					child's early development.</p>
-				<a href="#" class="btn" id="enrollBtn">Enroll Now</a>
+				<div class="hero-content">
+					<h1>Welcome to Mother's Sparsh Playway School and Day Care</h1>
+					<p>Where learning begins with fun, creativity, and care. We provide a nurturing environment for your
+						child's early development.</p>
+					<a href="#" class="btn" id="enrollBtn">Enroll Now</a>
+				</div>
 			</div>
 		</section>
 
@@ -604,6 +1104,9 @@ This special day is more than just a ceremony; it's a heartfelt tribute to the v
 									<p>We believe in nurturing the spark of creativity and confidence in every child. Our <b>Annual Day</b> is the grandest event of the year, a vibrant spectacle where our little stars step into the spotlight to shine!
 
 This much-anticipated celebration is more than just a performance; it's a showcase of imagination, teamwork, and the incredible talents hidden within each child. From joyful songs and graceful dances to charming plays, the stage comes alive with the infectious energy of our young performers. It is a proud moment for us to display the holistic development and boundless potential of our students.</p>
+								</div>
+								<div class="activity-text">
+									<p>For more information about our programs, please <a href="mailto:bhawnaagnihotri89@gmail.com" class="email-link"><i class="fas fa-envelope"></i>email us</a> or call us at <a href="tel:+919803652046" class="phone-link"><i class="fas fa-phone"></i>+91-9803652046</a>.</p>
 								</div>
 							</div>
 						</div>
@@ -766,56 +1269,74 @@ Through this creative retelling, children don't just memorize lines—they imbib
 					<div class="gallery-item">
 						<img src="SS07.jpg"
 							alt="Arts and Crafts">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS08.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS10.jpg"
 							alt="Outdoor Play">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS09.jpg"
 							alt="Story Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					
 					<div class="gallery-item">
 						<img src="SS11.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS12.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS13.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS14.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					
 					<div class="gallery-item">
 						<img src="SS15.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS16.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS17.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="gallery-item">
 						<img src="SS18.jpg"
 							alt="Music Time">
+						<i class="fas fa-search-plus"></i>
 					</div>
 				</div>
 			</div>
 		</section>
+		
+		<!-- Modal for gallery images -->
+		<div id="imageModal" class="modal">
+			<span class="close">&times;</span>
+			<img class="modal-content" id="modalImage">
+		</div>
 	</div>
 
 	<!-- History Page -->
@@ -850,7 +1371,7 @@ As Mrs. Mittal says, </p>
 				</div>
 				<div style="display: flex; gap: 30px; flex-wrap: wrap;">
 					<div style="flex: 1; min-width: 300px;">
-						<img src="BHAWNA01.jpg">
+						<img src="BHAWNA01.jpg" style="width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
 					</div>
 					<div style="flex: 2; min-width: 300px;">
 						<h3>Mrs. Bhawna Mittal</h3>
@@ -872,6 +1393,7 @@ As Mrs. Mittal says, </p>
 							dedicated to shaping the future of her students and institution. She is a great manager who
 							effectively combines practical skills with a clear, forward-thinking vision for education.
 						</p>
+						<p>To contact Mrs. Mittal directly, please <a href="mailto:bhawnaagnihotri89@gmail.com" class="email-link"><i class="fas fa-envelope"></i>send an email</a> or call at <a href="tel:+919803652046" class="phone-link"><i class="fas fa-phone"></i>+91-9803652046</a>.</p>
 					</div>
 				</div>
 			</div>
@@ -984,12 +1506,15 @@ As Mrs. Mittal says, </p>
 					<div class="contact-info-card">
 						<i class="fas fa-phone"></i>
 						<h3>Phone Numbers</h3>
-						<p>+91-9803652046<br>+91-9417987591</p>
+						<p>
+							<a href="tel:+919803652046" class="phone-link"><i class="fas fa-phone"></i>+91-9803652046</a><br>
+							<a href="tel:+919417987591" class="phone-link"><i class="fas fa-phone"></i>+91-9417987591</a>
+						</p>
 					</div>
 					<div class="contact-info-card">
 						<i class="fas fa-envelope"></i>
 						<h3>Email</h3>
-						<p>bhawnaagnihotri89@gmail.com</p>
+						<p><a href="mailto:bhawnaagnihotri89@gmail.com" class="email-link"><i class="fas fa-envelope"></i>bhawnaagnihotri89@gmail.com</a></p>
 					</div>
 				</div>
 
@@ -997,6 +1522,11 @@ As Mrs. Mittal says, </p>
 			</div>
 		</section>
 	</div>
+
+	<!-- Back to top button -->
+	<a href="#" class="back-to-top" id="backToTop">
+		<i class="fas fa-arrow-up"></i>
+	</a>
 
 	<!-- Footer -->
 	<footer>
@@ -1022,8 +1552,12 @@ As Mrs. Mittal says, </p>
 				<div class="footer-section">
 					<h3>Contact Information</h3>
 					<p><i class="fas fa-map-marker-alt"></i> Mother's Sparsh Playway School and Day Care <b> Prithvi Nagar, Santokh Pura, Jalandhar, Punjab 144008</p>
-					<p><i class="fas fa-phone"></i> +91-9803652046, +91-9417987591</p>
-					<p><i class="fas fa-envelope"></i> bhawnaagnihotri89@gmail.com</p>
+					<p>
+						<i class="fas fa-phone"></i> 
+						<a href="tel:+919803652046" class="phone-link">+91-9803652046</a>, 
+						<a href="tel:+919417987591" class="phone-link">+91-9417987591</a>
+					</p>
+					<p><i class="fas fa-envelope"></i> <a href="mailto:bhawnaagnihotri89@gmail.com" class="email-link">bhawnaagnihotri89@gmail.com</a></p>
 					<div class="social-links">
 						<a href="https://www.facebook.com/share/19kqnhPYcB/"><i class="fab fa-facebook-f"></i></a>
 						
@@ -1047,6 +1581,88 @@ As Mrs. Mittal says, </p>
 			const navMenu = document.getElementById('nav-menu');
 			const accordionHeaders = document.querySelectorAll('.accordion-header');
 			const enrollBtn = document.getElementById('enrollBtn');
+			const backToTopBtn = document.getElementById('backToTop');
+			const header = document.getElementById('main-header');
+			const galleryItems = document.querySelectorAll('.gallery-item');
+			const modal = document.getElementById('imageModal');
+			const modalImg = document.getElementById('modalImage');
+			const closeModal = document.querySelector('.close');
+			
+			// Add floating animation to elements
+			const floatingElements = document.querySelectorAll('.floating-element');
+			floatingElements.forEach(el => {
+				el.style.animationDelay = `${Math.random() * 5}s`;
+			});
+
+			// Scroll event listener for animations
+			window.addEventListener('scroll', function() {
+				// Header scroll effect
+				if (window.scrollY > 50) {
+					header.classList.add('header-scrolled');
+				} else {
+					header.classList.remove('header-scrolled');
+				}
+				
+				// Back to top button
+				if (window.scrollY > 500) {
+					backToTopBtn.classList.add('visible');
+				} else {
+					backToTopBtn.classList.remove('visible');
+				}
+				
+				// Section animation on scroll
+				document.querySelectorAll('section').forEach(section => {
+					const sectionTop = section.getBoundingClientRect().top;
+					const windowHeight = window.innerHeight;
+					
+					if (sectionTop < windowHeight - 100) {
+						section.classList.add('visible');
+					}
+				});
+				
+				// Feature cards animation
+				document.querySelectorAll('.feature-card').forEach(card => {
+					const cardTop = card.getBoundingClientRect().top;
+					const windowHeight = window.innerHeight;
+					
+					if (cardTop < windowHeight - 100) {
+						card.classList.add('visible');
+					}
+				});
+				
+				// Testimonial cards animation
+				document.querySelectorAll('.testimonial-card').forEach(card => {
+					const cardTop = card.getBoundingClientRect().top;
+					const windowHeight = window.innerHeight;
+					
+					if (cardTop < windowHeight - 100) {
+						card.classList.add('visible');
+					}
+				});
+				
+				// Contact info cards animation
+				document.querySelectorAll('.contact-info-card').forEach(card => {
+					const cardTop = card.getBoundingClientRect().top;
+					const windowHeight = window.innerHeight;
+					
+					if (cardTop < windowHeight - 100) {
+						card.classList.add('visible');
+					}
+				});
+				
+				// Gallery items animation
+				document.querySelectorAll('.gallery-item').forEach(item => {
+					const itemTop = item.getBoundingClientRect().top;
+					const windowHeight = window.innerHeight;
+					
+					if (itemTop < windowHeight - 100) {
+						item.classList.add('visible');
+					}
+				});
+			});
+			
+			// Trigger scroll event on load to check initial positions
+			window.dispatchEvent(new Event('scroll'));
 
 			// Navigation click handler
 			function handleNavigationClick(e) {
@@ -1128,9 +1744,40 @@ As Mrs. Mittal says, </p>
 			// Enroll button functionality
 			enrollBtn.addEventListener('click', function(e) {
 				e.preventDefault();
-				// You can customize what happens when the enroll button is clicked
-				// For example, show a modal, redirect to a form, etc.
-				alert('Thank you for your interest in Mother\'s Sparsh! Please contact us at +91-9803652046 for enrollment information.');
+				// Scroll to contact section
+				document.querySelector('.nav-link[href="#contact"]').click();
+			});
+			
+			// Back to top functionality
+			backToTopBtn.addEventListener('click', function(e) {
+				e.preventDefault();
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			});
+			
+			// Gallery modal functionality
+			galleryItems.forEach(item => {
+				item.addEventListener('click', function() {
+					modal.classList.add('show');
+					modalImg.src = this.querySelector('img').src;
+					document.body.style.overflow = 'hidden';
+				});
+			});
+			
+			// Close modal
+			closeModal.addEventListener('click', function() {
+				modal.classList.remove('show');
+				document.body.style.overflow = 'auto';
+			});
+			
+			// Close modal when clicking outside the image
+			modal.addEventListener('click', function(e) {
+				if (e.target === modal) {
+					modal.classList.remove('show');
+					document.body.style.overflow = 'auto';
+				}
 			});
 		});
 	</script>
